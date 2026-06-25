@@ -1,14 +1,15 @@
-// Aguarda o carregamento completo do DOM para evitar erros de execução
+
+// Garante a execução segura após a renderização completa da árvore DOM
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- Seleção de Elementos do DOM ---
+    // Captura dos elementos para manipulação dinâmica de interface
     const themeToggleBtn = document.getElementById("theme-toggle");
     const quizForm = document.getElementById("quiz-form");
     const quizFeedback = document.getElementById("quiz-feedback");
 
-    // --- Funcionalidade 1: Controle de Acessibilidade (Modo Escuro) ---
+    // --- Sistema Dinâmico de Acessibilidade (Modo Escuro) ---
     themeToggleBtn.addEventListener("click", () => {
-        // Verifica qual o tema atual do documento HTML
+        // Analisa o estado atual do atributo de tema no HTML
         const currentTheme = document.documentElement.getAttribute("data-theme");
         
         if (currentTheme === "dark") {
@@ -20,23 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- Funcionalidade 2: Validador do Quiz Anti-Desinformação ---
+    // --- Processamento Lógico e Validação do Quiz ---
     quizForm.addEventListener("submit", (event) => {
-        // Evita o recarregamento padrão da página ao enviar o formulário
+        // Interrompe o recarregamento automático da página
         event.preventDefault();
 
-        // Armazena a opção selecionada pelo usuário em uma variável de processamento
+        // Armazena temporariamente a escolha do usuário em uma variável de controle
         const selectedOption = document.querySelector('input[name="quiz-answer"]:checked');
 
-        // Remove classes antigas de feedback para atualização limpa
+        // Reseta as classes de renderização anteriores da caixa de feedback
         quizFeedback.classList.remove("hidden", "correct", "wrong");
 
-        // Processa a informação capturada do formulário
+        // Avalia logicamente a variável capturada e altera o DOM textualmente e visualmente
         if (selectedOption.value === "correto") {
-            quizFeedback.textContent = "✅ Excelente! Checar fontes e canais oficiais é a melhor arma contra a desinformação por IA.";
+            quizFeedback.textContent = "✅ Excelente! Investigar fontes e canais oficiais é a melhor proteção contra a desinformação por IA.";
             quizFeedback.classList.add("correct");
         } else {
-            quizFeedback.textContent = "❌ Atenção! Compartilhar conteúdos suspeitos propaga pânico e desinformação automatizada. Sempre verifique antes.";
+            quizFeedback.textContent = "❌ Atenção! Compartilhar mídias suspeitas ajuda a propagar redes de desinformação automatizada. Sempre verifique antes.";
             quizFeedback.classList.add("wrong");
         }
     });
