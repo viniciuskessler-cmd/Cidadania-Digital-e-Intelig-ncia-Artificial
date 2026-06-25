@@ -1,175 +1,48 @@
-/* --- Identidade Visual Tecnológica e Variáveis de Cores --- */
-:root {
-    --bg-primary: #f4f7f6;
-    --bg-card: #ffffff;
-    --text-main: #1a1a1a;
-    --accent-color: #2563eb;
-    --accent-hover: #1d4ed8;
-    --border-color: #e5e7eb;
-    --success-bg: #d1fae5;
-    --success-text: #065f46;
-}
-
-/* Variáveis aplicadas dinamicamente para o Modo Escuro */
-[data-theme="dark"] {
-    --bg-primary: #0f172a;
-    --bg-card: #1e293b;
-    --text-main: #f8fafc;
-    --accent-color: #3b82f6;
-    --accent-hover: #60a5fa;
-    --border-color: #334155;
-}
-
-/* --- Reset Geral --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-main);
-    line-height: 1.6;
-}
-
-/* --- Alinhamento Avançado com Flexbox --- */
-.main-header {
-    background-color: var(--bg-card);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1.2rem 2rem;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-h1 span {
-    color: var(--accent-color);
-}
-
-/* Container Centralizado */
-.content-container {
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
-/* --- Estilização das Seções e Cards --- */
-.intro-section, .quiz-section {
-    background-color: var(--bg-card);
-    padding: 2.5rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-h2 {
-    margin-bottom: 1.2rem;
-    color: var(--accent-color);
-}
-
-/* --- Layout do Formulário do Quiz --- */
-.options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin: 2rem 0;
-}
-
-.quiz-option {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-}
-
-/* Efeito Hover Suave para guiar a atenção (Critério Nível 4) */
-.quiz-option:hover {
-    border-color: var(--accent-color);
-    transform: translateX(6px);
-    background-color: rgba(37, 99, 235, 0.03);
-}
-
-/* Botões Customizados */
-.btn-toggle, .btn-submit {
-    background-color: var(--accent-color);
-    color: #ffffff;
-    border: none;
-    padding: 0.8rem 1.6rem;
-    border-radius: 6px;
-    font-weight: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.btn-toggle:hover, .btn-submit:hover {
-    background-color: var(--accent-hover);
-}
-
-/* --- Classes Utilitárias Dinâmicas para JS --- */
-.hidden {
-    display: none !important;
-}
-
-.feedback-box {
-    margin-top: 1.5rem;
-    padding: 1.2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.feedback-box.correct {
-    background-color: var(--success-bg);
-    color: var(--success-text);
-    border: 1px solid #10b981;
-}
-
-.feedback-box.wrong {
-    background-color: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #ef4444;
-}
-
-/* --- Rodapé --- */
-.main-footer {
-    text-align: center;
-    padding: 2.5rem;
-    font-size: 0.95rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: 5rem;
-    background-color: var(--bg-card);
-}
-
-/* --- Responsividade Absoluta (Media Queries para Telas Móveis) --- */
-@media (max-width: 650px) {
-    .header-container {
-        flex-direction: column;
-        gap: 1.2rem;
-        text-align: center;
-    }
+document.addEventListener("DOMContentLoaded", () => {
     
-    .intro-section, .quiz-section {
-        padding: 1.5rem;
+    // Elementos do DOM
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const quizForm = document.getElementById("quiz-form");
+    const quizFeedback = document.getElementById("quiz-feedback");
+
+    // --- Persistência do Modo Escuro (LocalStorage) ---
+    // Verifica se o usuário já escolheu o modo escuro anteriormente
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeToggleBtn.textContent = "☀️ Modo Claro";
     }
 
-    .quiz-option {
-        padding: 1rem;
-    }
-}
+    themeToggleBtn.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        
+        if (currentTheme === "dark") {
+            document.documentElement.removeAttribute("data-theme");
+            themeToggleBtn.textContent = "🌓 Modo Escuro";
+            localStorage.setItem("theme", "light"); // Salva a escolha
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            themeToggleBtn.textContent = "☀️ Modo Claro";
+            localStorage.setItem("theme", "dark"); // Salva a escolha
+        }
+    });
+
+    // --- Validação do Quiz Interativo ---
+    quizForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const selectedOption = document.querySelector('input[name="quiz-answer"]:checked');
+
+        // Limpa estados e feedbacks anteriores
+        quizFeedback.classList.remove("hidden", "correct", "wrong");
+
+        // Processamento lógico da resposta
+        if (selectedOption.value === "correto") {
+            quizFeedback.textContent = "✅ Excelente! Investigar fontes e canais oficiais é a melhor proteção contra a desinformação por IA.";
+            quizFeedback.classList.add("correct");
+        } else {
+            quizFeedback.textContent = "❌ Atenção! Compartilhar mídias suspeitas ajuda a propagar redes de desinformação automatizada. Sempre verifique antes.";
+            quizFeedback.classList.add("wrong");
+        }
+    });
+});
