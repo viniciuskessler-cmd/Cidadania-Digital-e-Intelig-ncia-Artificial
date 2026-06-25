@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidadania Digital & IA: Desinformação e Deepfakes</title>
-    <!-- Vínculo corrigido para buscar a folha de estilo dentro da pasta css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Cabeçalho Principal com Layout Flexbox -->
+    <!-- Cabeçalho Principal com Acessibilidade -->
     <header class="main-header">
         <div class="header-container">
             <h1>Cidadania <span>Digital</span></h1>
-            <button id="theme-toggle" class="btn-toggle" aria-label="Alternar modo escuro">🌓 Modo Escuro</button>
+            <button id="theme-toggle" class="btn-toggle" aria-label="Alternar entre modo claro e escuro">🌓 Modo Escuro</button>
         </div>
     </header>
 
@@ -21,44 +20,44 @@
     <main class="content-container">
         
         <!-- Seção de Contextualização do Tema -->
-        <section class="intro-section">
-            <h2>O Impacto das Deepfakes na Sociedade</h2>
+        <section class="intro-section" aria-labelledby="intro-title">
+            <h2 id="intro-title">O Impacto das Deepfakes na Sociedade</h2>
             <p>As deepfakes utilizam Inteligência Artificial para clonar vozes e simular rostos em vídeos realistas. Sem o devido senso crítico, essas tecnologias alimentam redes de desinformação automatizada, ameaçando a democracia e a reputação de cidadãos.</p>
         </section>
 
         <!-- Seção do Quiz Interativo -->
-        <section class="quiz-section">
-            <h2>Desafio: Você sabe identificar um Deepfake?</h2>
-            <p>Analise a situação: Você recebeu um vídeo de um político admitindo um crime grave, mas o movimento dos lábios dele parece levemente dessincronizado com o áudio. O que você faz?</p>
+        <section class="quiz-section" aria-labelledby="quiz-title">
+            <h2 id="quiz-title">Desafio: Você sabe identificar um Deepfake?</h2>
+            <p class="quiz-scenario"><strong>Analise a situação:</strong> Você recebeu um vídeo de um político admitindo um crime grave, mas o movimento dos lábios dele parece levemente dessincronizado com o áudio. O que você faz?</p>
             
             <!-- Formulário de Interação Semântica -->
             <form id="quiz-form">
-                <div class="options-container">
+                <div class="options-container" role="radiogroup" aria-label="Opções de resposta do quiz">
                     <label class="quiz-option">
                         <input type="radio" name="quiz-answer" value="errado" required>
-                        <span>Compartilho imediatamente nos grupos de família para alertar a todos.</span>
+                        <span class="option-text">Compartilho imediatamente nos grupos de família para alertar a todos.</span>
                     </label>
                     <label class="quiz-option">
                         <input type="radio" name="quiz-answer" value="correto">
-                        <span>Não compartilho, busco por agências de checagem e reparo em falhas físicas no vídeo.</span>
+                        <span class="option-text">Não compartilho, busco por agências de checagem e reparo em falhas físicas no vídeo.</span>
                     </label>
                 </div>
                 <button type="submit" class="btn-submit">Verificar Resposta</button>
             </form>
 
-            <!-- Div para exibição de Feedback via JavaScript -->
+            <!-- Caixa de Feedback Dinâmico (aria-live avisa leitores de tela quando o texto mudar) -->
             <div id="quiz-feedback" class="feedback-box hidden" aria-live="polite"></div>
         </section>
 
     </main>
 
-    <!-- Rodapé Oficial com Créditos Exigidos -->
+    <!-- Rodapé Oficial com Créditos -->
     <footer class="main-footer">
         <p>&copy; 2026 - Projeto de Conscientização Comunitária.</p>
         <p>Desenvolvido para o Componente de Educação Digital e Computação.</p>
     </footer>
 
-    <!-- Vínculo do script corrigido (dentro da pasta js ou na raiz conforme sua estrutura) -->
     <script src="js/script.js"></script>
 </body>
 </html>
+
